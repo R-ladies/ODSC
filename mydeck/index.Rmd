@@ -6,7 +6,7 @@ output: pdf_document
 job: Founder of R-ladies & Data Scientist at Sharethrough
 knit: slidify::knit2slides
 logo: logo.png
-mode: selfcontained
+mode: standalone  #standalone  #selfcontained 
 hitheme: tomorrow
 subtitle: Workshop
 framework: io2012
@@ -835,3 +835,15 @@ This form is tidy because each column represents a variable and each row represe
 
 
 ## THANK YOU!
+
+
+
+<div style='text-align: left;'>
+    <img height='560' src='Gabriela_Queiroz_headshot.jpg' />
+</div>
+
+<b><span class = 'red'>@gdequeiroz</b></span>
+
+<br></br>
+<b><span class = 'red'>Slides:</b> http://rpubs.com/gdequeiroz/ODSC</span>
+
