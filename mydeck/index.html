@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Intro to R for Data  Science</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Intro to R for Data  Science">
+  <meta name="author" content="Gabriela de Queiroz">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/logo.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>Intro to R for Data  Science</h1>
+    <h2>Workshop</h2>
+    <p>Gabriela de Queiroz<br/>Founder of R-ladies &amp; Data Scientist at Sharethrough</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+.title-slide {
+  background-color: #10103F; /* #EDE0CF; ; #CA9F9D*/
+}
+
+.title-slide hgroup > h1{
+ font-family: 'Oswald', 'Helvetica', sanserif; 
+}
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #76DFC0;}
+
+.title-slide hgroup > h1, 
+.title-slide hgroup > h2 {
+  color: #76DFC0;}
+
+
+/* Fonts and Spacing */
+article p, article li, article li.build, section p, section li{
+  font-family: 'Open Sans','Helvetica', 'Crimson Text', 'Garamond',  'Palatino', sans-serif;
+  text-align: justify;
+  font-size:22px;
+  line-height: 1.5em;
+  color: #444;
+}
+
+/* Code Font */
+code {
+  font-size: 80%;
+  font-family: "Source Code Pro", monospace;
+  color: darkred;
+}
+
+</style>
+
+<h2>Data Science Process</h2>
+
+<p>There are few fundamental processes to turn data into understanding, knowledge &amp; insight:</p>
+
+<div style="line-height:80%;">
+    <br>
+</div>
+
+<div class="centered">Data manipulation</div>
+
+<div style="line-height:80%;">
+    <br>
+</div>
+
+<!-- Center image on slide -->
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type="text/javascript">
+$(function() {     
+  $("p:has(img)").addClass('centered'); 
+});
+</script>
+
+<p><img src="Arrow_down.png" alt=""></p>
+
+<div class="centered">Data visualization</div> 
+
+<div style="line-height:80%;">
+    <br>
+</div>
+
+<p><img src="Arrow_down.png" alt=""></p>
+
+<div class="centered">Statistical analysis/modeling</div>
+
+<div style="line-height:80%;">
+    <br>
+</div>
+
+<p><img src="Arrow_down.png" alt=""></p>
+
+<div class="centered">Deployment of results</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-2" style="background:#10103F;">
+  <article data-timings="">
+    <div class="centered">
+<div style="color:#EF2F4F"> <b>80%</b> of data analysis is spent on: <b>CLEANING</b> and <b>PREPARING</b> data.
+</div></div>
+
+<p><br></br></p>
+
+<div class="centered">
+<div style="color:#EF2F4F"> And it must be <b>repeated</b> many times over the course of analysis.
+</div></div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <article data-timings="">
+    <div style="color:#76DFC0">
+<div class="centered">
+We are going to focus on: </div></div>
+
+<br></br>
+<br></br>
+
+<div class="centered">
+  <div style="color:#EF2F4F"><b>Data Manipulation</b> (Reshaping & Wrangling)</div>
+</div>
+
+<p><br></br></p>
+
+<div class="centered"><div style="color:#76DFC0"> + </div></div>
+
+<p><br></br></p>
+
+<div class="centered"> <div style="color:#EF2F4F"> <b> Data Visualization</b></div></div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-4" style="background:#76DFC0;">
+  <article data-timings="">
+    <p><br></br>
+<br></br></p>
+
+<div class="centered"><div style="color:#EF2F4F">Let's start with some <b>DATA WRANGLING!!</b></div></div>
+
+<p><br></br></p>
+
+<div class="centered"><div style="color:#10103F">We will be using the package called <b>dplyr</b></div></div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-5" style="background:;">
+  <article data-timings="">
+    <!-- DATA WRANGLING ---------------------------------------------------------->
+
+<h2>Data Wrangling with dplyr</h2>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Syntax</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p><b><span class = 'red'>tbl_df()</span></b>: converts data to tbl class. 
+tbl’s are easier to examine than data frames. R displays only the data that fits onscreen.</p></li>
+<li><p><b><span class = 'red'>glimpse()</span></b>: information dense summary of tbl data.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-7" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- First Example to show tbl_df and glimpse -->
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <article data-timings="">
+    <p>The following dataset contains all 336776 flights that <strong>departed from New York City in 2013</strong>. The data comes from the US Bureau of Transportation Statistics</p>
+
+<p><strong>Variables</strong>:</p>
+
+<ul>
+<li><p>year, month, day - Date of departure</p></li>
+<li><p>dep_time, arr_time - Departure and arrival times, local tz.</p></li>
+<li><p>dep_delay, arr_delay - Departure and arrival delays, in minutes. Negative times represent early departures/arrivals.</p></li>
+<li><p>hour, minute - Time of departure broken in to hour and minutes</p></li>
+<li><p>carrier - Two letter carrier abbreviation</p></li>
+<li><p>tailnum - Plane tail number</p></li>
+<li><p>flight - Flight number</p></li>
+<li><p>origin, dest - Origin and destination</p></li>
+<li><p>air_time - Amount of time spent in the air</p></li>
+<li><p>distance - Distance flown</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <article data-timings="">
+    <style>
+/* Code Font */
+code {
+  font-size: 80%;
+  font-family: "Source Code Pro", monospace;
+  color: darkred;
+}
+
+</style>
+
+<pre><code class="r">flights &lt;- tbl_df(read.csv(&quot;flights.csv&quot;, stringsAsFactors = FALSE))
+
+flights
+</code></pre>
+
+<pre><code>## Source: local data frame [336,776 x 16]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     1     1      517         2      830        11      UA  N14228
+## 2   2013     1     1      533         4      850        20      UA  N24211
+## 3   2013     1     1      542         2      923        33      AA  N619AA
+## 4   2013     1     1      544        -1     1004       -18      B6  N804JB
+## 5   2013     1     1      554        -6      812       -25      DL  N668DN
+## 6   2013     1     1      554        -4      740        12      UA  N39463
+## 7   2013     1     1      555        -5      913        19      B6  N516JB
+## 8   2013     1     1      557        -3      709       -14      EV  N829AS
+## 9   2013     1     1      557        -3      838        -8      B6  N593JB
+## 10  2013     1     1      558        -2      753         8      AA  N3ALAA
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">glimpse(flights)
+</code></pre>
+
+<pre><code>## Observations: 336,776
+## Variables: 16
+## $ year      (int) 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013...
+## $ month     (int) 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ day       (int) 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ dep_time  (int) 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 55...
+## $ dep_delay (int) 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2,...
+## $ arr_time  (int) 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 8...
+## $ arr_delay (int) 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7,...
+## $ carrier   (chr) &quot;UA&quot;, &quot;UA&quot;, &quot;AA&quot;, &quot;B6&quot;, &quot;DL&quot;, &quot;UA&quot;, &quot;B6&quot;, &quot;EV&quot;, &quot;B6&quot;...
+## $ tailnum   (chr) &quot;N14228&quot;, &quot;N24211&quot;, &quot;N619AA&quot;, &quot;N804JB&quot;, &quot;N668DN&quot;, &quot;N...
+## $ flight    (int) 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301...
+## $ origin    (chr) &quot;EWR&quot;, &quot;LGA&quot;, &quot;JFK&quot;, &quot;JFK&quot;, &quot;LGA&quot;, &quot;EWR&quot;, &quot;EWR&quot;, &quot;LG...
+## $ dest      (chr) &quot;IAH&quot;, &quot;IAH&quot;, &quot;MIA&quot;, &quot;BQN&quot;, &quot;ATL&quot;, &quot;ORD&quot;, &quot;FLL&quot;, &quot;IA...
+## $ air_time  (int) 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149...
+## $ distance  (int) 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 73...
+## $ hour      (int) 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6...
+## $ minute    (int) 17, 33, 42, 44, 54, 54, 55, 57, 57, 58, 58, 58, 58, ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Subset Observations (Rows)</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- PART II of DPLYR -------------------------------------------------------->
+
+<p><img src="subset_row.png" alt=""></p>
+
+<ul>
+<li><b><span class = 'red'> filter()</span></b>: extract rows that meet logical criteria.</li>
+<li><b><span class = 'red'> distinct()</span></b>: remove duplicate rows.</li>
+<li><b><span class = 'red'> sample_frac()</span></b>: randomly select fraction of rows.</li>
+<li><b><span class = 'red'> sample_n()</span></b>: randomly select n rows.</li>
+<li><b><span class = 'red'> slice()</span></b>: select rows by position.</li>
+<li><b><span class = 'red'> top_n()</span></b>: select and order top n entries (by group if grouped data).</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-12" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <article data-timings="">
+    <p>Filter only fligths from United Airlines (UA)</p>
+
+<pre><code class="r">filter(flights, carrier == &quot;UA&quot;)
+</code></pre>
+
+<pre><code>## Source: local data frame [58,665 x 16]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     1     1      517         2      830        11      UA  N14228
+## 2   2013     1     1      533         4      850        20      UA  N24211
+## 3   2013     1     1      554        -4      740        12      UA  N39463
+## 4   2013     1     1      558        -2      924         7      UA  N29129
+## 5   2013     1     1      558        -2      923       -14      UA  N53441
+## 6   2013     1     1      559        -1      854        -8      UA  N76515
+## 7   2013     1     1      607         0      858       -17      UA  N53442
+## 8   2013     1     1      611        11      945        14      UA  N532UA
+## 9   2013     1     1      623        -4      933         1      UA  N459UA
+## 10  2013     1     1      628        -2     1016        29      UA  N33289
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <article data-timings="">
+    <!-- PART III of DPLYR -------------------------------------------------------->
+
+<h2>Subset Variables (Columns)</h2>
+
+<p><img src="subset_col.png" alt=""></p>
+
+<ul>
+<li><b><span class = 'red'> select()</span></b>: select columns by name or helper function.</li>
+</ul>
+
+<p><br></br></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <article data-timings="">
+    <p><strong>There are several specials functions that ony work inside select:</strong> </p>
+
+<pre><code class="r"># How to get help
+?dplyr::select #?select
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-16" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <article data-timings="">
+    <p>Select only columns that starts with (&quot;d&quot;)</p>
+
+<pre><code class="r">select(flights, starts_with(&quot;d&quot;))
+</code></pre>
+
+<pre><code>## Source: local data frame [336,776 x 5]
+## 
+##      day dep_time dep_delay  dest distance
+##    (int)    (int)     (int) (chr)    (int)
+## 1      1      517         2   IAH     1400
+## 2      1      533         4   IAH     1416
+## 3      1      542         2   MIA     1089
+## 4      1      544        -1   BQN     1576
+## 5      1      554        -6   ATL      762
+## 6      1      554        -4   ORD      719
+## 7      1      555        -5   FLL     1065
+## 8      1      557        -3   IAD      229
+## 9      1      557        -3   MCO      944
+## 10     1      558        -2   ORD      733
+## ..   ...      ...       ...   ...      ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <article data-timings="">
+    <!-- PART IV of DPLYR -------------------------------------------------------->
+
+<h2>Summarize Data</h2>
+
+<p><img src="summarise.png" alt=""></p>
+
+<ul>
+<li><b><span class = 'red'>summarise(data, avg = mean(col_a))</span></b>: summarise data into single row of values.</li>
+<li><b><span class = 'red'>summarise_each(data, funs(mean))</span></b>: apply summary function to each column.</li>
+<li><b><span class = 'red'>count(data, vars_to_group_by, wt = col_a)</span></b>: count number of rows with each unique value of variable (with or without weights).</li>
+</ul>
+
+<p><br></br></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-19" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <article data-timings="">
+    <p>Count the number of flights by carrier</p>
+
+<pre><code class="r">count(flights, carrier)
+</code></pre>
+
+<pre><code>## Source: local data frame [16 x 2]
+## 
+##    carrier     n
+##      (chr) (int)
+## 1       9E 18460
+## 2       AA 32729
+## 3       AS   714
+## 4       B6 54635
+## 5       DL 48110
+## 6       EV 54173
+## 7       F9   685
+## 8       FL  3260
+## 9       HA   342
+## 10      MQ 26397
+## 11      OO    32
+## 12      UA 58665
+## 13      US 20536
+## 14      VX  5162
+## 15      WN 12275
+## 16      YV   601
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <article data-timings="">
+    <!-- PART V of DPLYR ------------------------------------------------------------>
+
+<h2>Make New Variables</h2>
+
+<p><img src="make_new_vars.png" alt=""></p>
+
+<ul>
+<li><b><span class = 'red'>mutate(data, new_col = col_a + col_b)</span></b>: compute and append one or more new columns.</li>
+<li><b><span class = 'red'>mutate_each(data, funs(min_rank))</span></b>: apply window function to each column.</li>
+<li><b><span class = 'red'>transmute(data, new_col = col_a + col_b)</span></b>: compute one or more new columns. Drop original columns.
+<br></br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-22" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <article data-timings="">
+    <p>Create 2 new columns: gain and speed</p>
+
+<pre><code class="r">mutate(flights,
+       gain = arr_delay - dep_delay,
+       speed = distance / air_time * 60)
+</code></pre>
+
+<pre><code>## Source: local data frame [336,776 x 18]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     1     1      517         2      830        11      UA  N14228
+## 2   2013     1     1      533         4      850        20      UA  N24211
+## 3   2013     1     1      542         2      923        33      AA  N619AA
+## 4   2013     1     1      544        -1     1004       -18      B6  N804JB
+## 5   2013     1     1      554        -6      812       -25      DL  N668DN
+## 6   2013     1     1      554        -4      740        12      UA  N39463
+## 7   2013     1     1      555        -5      913        19      B6  N516JB
+## 8   2013     1     1      557        -3      709       -14      EV  N829AS
+## 9   2013     1     1      557        -3      838        -8      B6  N593JB
+## 10  2013     1     1      558        -2      753         8      AA  N3ALAA
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int), gain (int), speed (dbl)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <!-- PART VI of DPLYR ------------------------------------------------------------>
+
+<h2>Group Data</h2>
+
+<ul>
+<li><b><span class = 'red'>group_by(data, col_to_be_grouped_by)</span></b>: group data into rows.</li>
+<li><b><span class = 'red'>ungroup(data)</span></b>: remove grouping information from data frame. </li>
+</ul>
+
+<p><br></br></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-25" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">group_by(flights, carrier)
+</code></pre>
+
+<pre><code>## Source: local data frame [336,776 x 16]
+## Groups: carrier [16]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     1     1      517         2      830        11      UA  N14228
+## 2   2013     1     1      533         4      850        20      UA  N24211
+## 3   2013     1     1      542         2      923        33      AA  N619AA
+## 4   2013     1     1      544        -1     1004       -18      B6  N804JB
+## 5   2013     1     1      554        -6      812       -25      DL  N668DN
+## 6   2013     1     1      554        -4      740        12      UA  N39463
+## 7   2013     1     1      555        -5      913        19      B6  N516JB
+## 8   2013     1     1      557        -3      709       -14      EV  N829AS
+## 9   2013     1     1      557        -3      838        -8      B6  N593JB
+## 10  2013     1     1      558        -2      753         8      AA  N3ALAA
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <article data-timings="">
+    <p><br></br></p>
+
+<div class="centered"><div class="red2">
+<b>What about if you want to to use more than one function?</b>
+</div></div>
+
+<p><br></br></p>
+
+<p>There are 3 ways to do this: </p>
+
+<p>1) use intermediate steps</p>
+
+<p>2) use nested functions</p>
+
+<p>3) <strong>pipes</strong></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-28" style="background:Teal;">
+  <hgroup>
+    <h2>The %&gt;% Operator - pipe operator</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-29" style="background:;">
+  <article data-timings="">
+    <p>It becomes more efficient and makes your code more legible:</p>
+
+<pre><code>data %&gt;%
+  filter(variable == &quot;value&quot;) %&gt;%
+  summarize(Total = sum(variable)) %&gt;%
+  arrange(desc(Total))
+</code></pre>
+
+<p>It allows you to flow from data manipulation tasks straight into vizualization and also into many analytic functions:</p>
+
+<pre><code>data %&gt;%
+  filter(variable == &quot;value&quot;) %&gt;%
+  summarize(Total = sum(variable)) %&gt;%
+  arrange(desc(Total)) %&gt;% 
+  ggplot()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-30" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-31" style="background:DarkRed;">
+  <hgroup>
+    <h3>How can we get all flights departed on Feb 1st using %&gt;%?</h3>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">flights %&gt;% 
+  filter(month == 2, day == 1)
+</code></pre>
+
+<pre><code>## Source: local data frame [926 x 16]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     2     1      456        -4      652         4      US  N197UW
+## 2   2013     2     1      520        -5      816        -4      UA  N24211
+## 3   2013     2     1      527        -3      837         8      UA  N470UA
+## 4   2013     2     1      532        -8     1007       -10      B6  N554JB
+## 5   2013     2     1      540         0      859         9      AA  N615AA
+## 6   2013     2     1      552        -8      714        -1      EV  N829AS
+## 7   2013     2     1      552        -8      919         9      AA  N3BUAA
+## 8   2013     2     1      552        -8      655       -14      B6  N346JB
+## 9   2013     2     1      553        -7      833        18      FL  N980AT
+## 10  2013     2     1      553        -7      821        -4      MQ  N1EAMQ
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-33" style="background:DarkRed;">
+  <hgroup>
+    <h3>How can we get all flights that departure on January <strong>OR</strong> February?</h3>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">flights %&gt;% 
+  filter(month == 1 | month == 2)
+</code></pre>
+
+<pre><code>## Source: local data frame [51,955 x 16]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     1     1      517         2      830        11      UA  N14228
+## 2   2013     1     1      533         4      850        20      UA  N24211
+## 3   2013     1     1      542         2      923        33      AA  N619AA
+## 4   2013     1     1      544        -1     1004       -18      B6  N804JB
+## 5   2013     1     1      554        -6      812       -25      DL  N668DN
+## 6   2013     1     1      554        -4      740        12      UA  N39463
+## 7   2013     1     1      555        -5      913        19      B6  N516JB
+## 8   2013     1     1      557        -3      709       -14      EV  N829AS
+## 9   2013     1     1      557        -3      838        -8      B6  N593JB
+## 10  2013     1     1      558        -2      753         8      AA  N3ALAA
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-35" style="background:DarkRed;">
+  <hgroup>
+    <h3>How can we order the flights by arrival delay?</h3>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">flights %&gt;% 
+  arrange(arr_delay)
+</code></pre>
+
+<pre><code>## Source: local data frame [336,776 x 16]
+## 
+##     year month   day dep_time dep_delay arr_time arr_delay carrier tailnum
+##    (int) (int) (int)    (int)     (int)    (int)     (int)   (chr)   (chr)
+## 1   2013     5     7     1715       -14     1944       -86      VX  N843VA
+## 2   2013     5    20      719       -16      951       -79      VX  N840VA
+## 3   2013     5     2     1947        -2     2209       -75      UA  N851UA
+## 4   2013     5     6     1826        -4     2045       -75      AA  N3KCAA
+## 5   2013     5     4     1816        -4     2017       -74      AS  N551AS
+## 6   2013     5     2     1926        -3     2157       -73      UA  N24212
+## 7   2013     5     6     1753        -2     2004       -71      DL  N3760C
+## 8   2013     5     7     2054        -1     2317       -71      UA  N806UA
+## 9   2013     5    13      657        -3      908       -71      B6  N805JB
+## 10  2013     1     4     1026        -4     1305       -70      VX  N855VA
+## ..   ...   ...   ...      ...       ...      ...       ...     ...     ...
+## Variables not shown: flight (int), origin (chr), dest (chr), air_time
+##   (int), distance (int), hour (int), minute (int)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h3>Another exercise:</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>1) split the dataset into individual carriers</p>
+
+<p>2) summarize each plane by counting the number of flights</p>
+
+<p>3) sort by the count </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">flights %&gt;% 
+  group_by(carrier) %&gt;% 
+  summarise(count = n()) %&gt;% 
+  arrange(count)
+</code></pre>
+
+<pre><code>## Source: local data frame [16 x 2]
+## 
+##    carrier count
+##      (chr) (int)
+## 1       OO    32
+## 2       HA   342
+## 3       YV   601
+## 4       F9   685
+## 5       AS   714
+## 6       FL  3260
+## 7       VX  5162
+## 8       WN 12275
+## 9       9E 18460
+## 10      US 20536
+## 11      MQ 26397
+## 12      AA 32729
+## 13      DL 48110
+## 14      EV 54173
+## 15      B6 54635
+## 16      UA 58665
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-39" style="background:;">
+  <hgroup>
+    <h3>Now compute for each carier:</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>1) the average distance</p>
+
+<p>2) the average arrival delay </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-40" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">flights %&gt;% 
+  group_by(carrier) %&gt;% 
+  summarise(dist = mean(distance, na.rm = TRUE),
+            delay = mean(arr_delay, na.rm = TRUE))
+</code></pre>
+
+<pre><code>## Source: local data frame [16 x 3]
+## 
+##    carrier      dist      delay
+##      (chr)     (dbl)      (dbl)
+## 1       9E  530.2358  7.3796692
+## 2       AA 1340.2360  0.3642909
+## 3       AS 2402.0000 -9.9308886
+## 4       B6 1068.6215  9.4579733
+## 5       DL 1236.9012  1.6443409
+## 6       EV  562.9917 15.7964311
+## 7       F9 1620.0000 21.9207048
+## 8       FL  664.8294 20.1159055
+## 9       HA 4983.0000 -6.9152047
+## 10      MQ  569.5327 10.7747334
+## 11      OO  500.8125 11.9310345
+## 12      UA 1529.1149  3.5580111
+## 13      US  553.4563  2.1295951
+## 14      VX 2499.4822  1.7644644
+## 15      WN  996.2691  9.6491199
+## 16      YV  375.0333 15.5569853
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-41" style="background:#76DFC0;">
+  <article data-timings="">
+    <p><br></br>
+<br></br></p>
+
+<div class="centered"><div style="color:#EF2F4F">Now, the next part is: <b>DATA VISUALIZATION!!</b></div></div>
+
+<p><br></br></p>
+
+<div class="centered"><div style="color:#10103F">We will be using the package called <b>ggplot2</b></div></div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-42" style="background:;">
+  <article data-timings="">
+    <!-- VISUALIZATION  ----------------------------------------------------------->
+
+<h2>Data Visualization with ggplot2</h2>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-43" style="background:;">
+  <article data-timings="">
+    <ul>
+<li><p>It is a plotting package that makes it simple to create complex plots.</p></li>
+<li><p>The graphics are build <strong>step by step</strong> by <strong>adding</strong> new elements.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-44" style="background:;">
+  <hgroup>
+    <h2>To build a ggplot we need to:</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>1) bind the plot to a specific data frame using the <code>data</code> argument</p>
+
+<pre><code class="r">ggplot(data = flights)
+</code></pre>
+
+<p>2) define aesthetics (<code>aes</code>), that maps variables in the data to axes on the plot
+     or to plotting size, shape color, etc.,</p>
+
+<pre><code class="r">ggplot(data = flights, aes(x = dep_delay, y = arr_delay))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-45" style="background:;">
+  <article data-timings="">
+    <p>3) add <code>geoms</code> </p>
+
+<ul>
+<li>graphical representation of the data in the plot (points,
+ lines, bars). </li>
+</ul>
+
+<p>To add a geom to the plot use <code>+</code> operator:</p>
+
+<pre><code class="r">ggplot(data = flights, aes(x = dep_delay, y = arr_delay)) +
+  geom_point()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-46" style="background:;">
+  <hgroup>
+    <h2>Modifying plots</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>adding transparency (alpha)</li>
+</ul>
+
+<pre><code class="r">ggplot(data = flights, aes(x = dep_delay, y = arr_delay)) +
+  geom_point(alpha = 0.1, na.rm = TRUE)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-47" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>adding colors</li>
+</ul>
+
+<pre><code class="r">ggplot(data = flights, aes(x = dep_delay, y = arr_delay)) +
+  geom_point(alpha = 0.1, color = &quot;blue&quot;, na.rm = TRUE)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-48" style="background:;">
+  <hgroup>
+    <h2>Boxplot</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Visualising the distribution of dep_delay by each carrier.</p>
+
+<pre><code class="r">ggplot(data = flights, aes(x = carrier, y = dep_delay)) + 
+  geom_boxplot(na.rm = TRUE)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-49" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">new &lt;- flights %&gt;%
+group_by(carrier, origin) %&gt;%
+summarize(delay = mean(arr_delay, na.rm = TRUE)) 
+
+ggplot(data = new, aes( x = carrier, y = delay, fill = origin)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-50" style="background:;">
+  <article data-timings="">
+    <p>To get a bar graph of counts, don’t map a variable to y, and use stat=&quot;bin&quot; (which is the default) instead of stat=&quot;identity&quot;:</p>
+
+<pre><code class="r"># Bar graph of counts
+ggplot(data = flights, aes(x = carrier)) +
+    geom_bar(stat = &quot;bin&quot;) # this argument is the default
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-51" style="background:;">
+  <hgroup>
+    <h2>Faceting</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>It  allows to split one plot into multiple plots based on some factor. </p>
+
+<pre><code class="r">ggplot(data = new, aes( x = origin, y = delay)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) +
+  facet_wrap(~carrier)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-52" style="background:;">
+  <hgroup>
+    <h2>Changing the Theme</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(data = new, aes( x = origin, y = delay)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;dodge&quot;) +
+  facet_wrap(~carrier) + 
+  theme_bw()
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-53" style="background:;">
+  <article data-timings="">
+    <!-- DATA WRANGLING ---------------------------------------------------------->
+
+<h2>Data Reshaping with tidyr</h2>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-54" style="background:;">
+  <article data-timings="">
+    <!-- DATA RESHAPING  ----------------------------------------------------------->
+
+<h2>Data Reshaping</h2>
+
+<p><br></br></p>
+
+<div class="centered"><div class="red2">
+<b>tidyr</b> is a package that makes it easy to "tidy" your data. 
+</div></div>
+
+<p><br></br></p>
+
+<p>In <strong>tidy</strong> data:</p>
+
+<p>1) Each variable forms a column.</p>
+
+<p>2) Each observation forms a row.</p>
+
+<p>3) Each type of observational unit forms a table.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-55" style="background:;">
+  <article data-timings="">
+    <p><strong>Tidy data</strong> is data that’s easy to work with: </p>
+
+<ul>
+<li><p>it’s easy to munge (with dplyr), </p></li>
+<li><p>visualise (with ggplot2 or ggvis) and </p></li>
+<li><p>model (with R’s hundreds of modelling packages). 
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br></p></li>
+</ul>
+
+<h4>* If you want to know more: <a href="http://vita.had.co.nz/papers/tidy-data.html">http://vita.had.co.nz/papers/tidy-data.html</a></h4>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-56" style="background:;">
+  <hgroup>
+    <h2>tidyr - Function</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-57" style="background:;">
+  <article data-timings="">
+    <!-- Limit image width and height -->
+
+<style type="text/css">
+img {     
+  max-height: 100px;     
+  max-width: 500px; 
+}
+</style>
+ 
+
+<!-- Center image on slide -->
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type="text/javascript">
+$(function() {     
+  $("p:has(img)").addClass('centered'); 
+});
+</script>
+
+<ul>
+<li><b><span class = 'red'> gather()</span></b>: takes multiple columns, and gathers them into key-value pairs 
+<div class="centered"><div class="blue">
+gather columns into rows
+</div></div></li>
+</ul>
+
+<p><img src="gather.png" alt=""></p>
+
+<ul>
+<li><b><span class = 'red'>spread()</span></b>: takes 2 columns (key &amp; value) and spreads in to multiple columns
+<div class="centered"><div class="blue">
+spread rows into columns
+</div></div></li>
+</ul>
+
+<p><img src="spread.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-58" style="background:;">
+  <article data-timings="">
+    <ul>
+<li><b><span class = 'red'> separate()</span></b>: splits a single column into multiple columns
+<div class="centered"><div class="blue">
+separate one column into several
+</div></div></li>
+</ul>
+
+<div style='text-align: center;'>
+    <img height='560' src='separate.png' />
+</div>
+
+<ul>
+<li><b><span class = 'red'>unite()</span></b>: combines multiple columns into a single column
+<div class="centered"><div class="blue">
+unite several columns into one.
+</div></div></li>
+</ul>
+
+<p><img src="unite.png" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-59" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>Example using tidyr</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-60" style="background:;">
+  <article data-timings="">
+    <p>We&#39;ll use the <strong>pew.csv</strong> dataset. This dataset explores the relationship between <strong>income</strong> and <strong>religion</strong> in the US.</p>
+
+<pre><code class="r"># Load the packages
+library(tidyr)
+# Read the file
+pew &lt;- read.csv(&quot;pew.csv&quot;, 
+               stringsAsFactors = FALSE, 
+               check.names = FALSE)
+
+head(pew, 5) #This data set has 3 variables: religion, income and frequency
+</code></pre>
+
+<pre><code>##             religion &lt;$10k $10-20k $20-30k $30-40k $40-50k $50-75k
+## 1           Agnostic    27      34      60      81      76     137
+## 2            Atheist    12      27      37      52      35      70
+## 3           Buddhist    27      21      30      34      33      58
+## 4           Catholic   418     617     732     670     638    1116
+## 5 Don’t know/refused    15      14      15      11      10      35
+##   $75-100k $100-150k &gt;150k Don&#39;t know/refused
+## 1      122       109    84                 96
+## 2       73        59    74                 76
+## 3       62        39    53                 54
+## 4      949       792   633               1489
+## 5       21        17    18                116
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-61" style="background:;">
+  <hgroup>
+    <h2>Let&#39;s tidy it!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>We need to <strong>gather</strong> the non-variable columns into a <strong>2-column key-value pair</strong>.</p>
+
+<p>When gathering variables, we <strong>need to provide</strong> the name of the new key-value columns to create. </p>
+
+<p><span style='color:red'>First argument:</span> name of the <b>key column</b>, i.e., the name of the variable defined by the values of the column headings.</p>
+
+<p><span style='color:red'>Second argument:</span> name of the <b>value column</b>, frequency. </p>
+
+<p><span style='color:red'>Third argument:</span> defines the <b>columns to gather</b>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-62" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">names(pew)
+</code></pre>
+
+<pre><code>##  [1] &quot;religion&quot;           &quot;&lt;$10k&quot;              &quot;$10-20k&quot;           
+##  [4] &quot;$20-30k&quot;            &quot;$30-40k&quot;            &quot;$40-50k&quot;           
+##  [7] &quot;$50-75k&quot;            &quot;$75-100k&quot;           &quot;$100-150k&quot;         
+## [10] &quot;&gt;150k&quot;              &quot;Don&#39;t know/refused&quot;
+</code></pre>
+
+<p>First argument? </p>
+
+<ul class = "build incremental">
+<li><span class = 'red'>key = income</span></li>
+</ul>
+
+<p>Second argument? </p>
+
+<ul class = "build incremental">
+<li><span class = 'red'>value = frequency</span></li>
+</ul>
+
+<p>Third argument? </p>
+
+<ul class = "build incremental">
+<li><span class = 'red'>-religion</span> (every column except religion)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-63" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">pew_tidy &lt;- gather(data = pew, 
+                   key = income, 
+                   value = frequency,
+                   -religion)
+
+head(pew_tidy, 3)
+</code></pre>
+
+<pre><code>##   religion income frequency
+## 1 Agnostic  &lt;$10k        27
+## 2  Atheist  &lt;$10k        12
+## 3 Buddhist  &lt;$10k        27
+</code></pre>
+
+<p>This form is tidy because each column represents a variable and each row represents an observation, in this case a demographic unit corresponding to a combination of religion and income.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-64" style="background:Teal;">
+  <article data-timings="">
+    <p><b><span class = 'red'>I would like to thanks:</b></span></p>
+
+<h3>- Open Data Science</h3>
+
+<h3>- Hadley Wickham</h3>
+
+<h3>- Jennifer Bryan (and STAT 545)</h3>
+
+<h3>- Software Carpentry</h3>
+
+<h3>- Bradley Boehmke</h3>
+
+<h3>- Ted Hart</h3>
+
+<h3>- Nicole White</h3>
+
+<h3>- Mikhail Popov</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-65" style="background:;">
+  <hgroup>
+    <h2>References</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th><strong>Good Links</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td><a href="http://www.rdocumentation.org/">http://www.rdocumentation.org/</a></td>
+</tr>
+<tr>
+<td><a href="https://cran.r-project.org/">https://cran.r-project.org/</a></td>
+</tr>
+<tr>
+<td><a href="https://www.rstudio.com/resources/cheatsheets/">https://www.rstudio.com/resources/cheatsheets/</a></td>
+</tr>
+<tr>
+<td><a href="http://stat545-ubc.github.io/">http://stat545-ubc.github.io/</a></td>
+</tr>
+<tr>
+<td><a href="http://usepa.github.io/introR/">http://usepa.github.io/introR/</a></td>
+</tr>
+<tr>
+<td><a href="http://stackoverflow.com/questions/tagged/r">http://stackoverflow.com/questions/tagged/r</a></td>
+</tr>
+<tr>
+<td><a href="http://slidify.org/">http://slidify.org/</a></td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-66" style="background:DarkSlateGray;">
+  <hgroup>
+    <h2>THANK YOU!</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='NA'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='NA'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='NA'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Syntax'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Example'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='NA'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='NA'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='NA'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Subset Observations (Rows)'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Example'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='NA'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='NA'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='NA'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Example'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='NA'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='NA'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Example'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='NA'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='NA'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Example'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='NA'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='NA'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Example'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='NA'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='NA'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='The %&gt;% Operator - pipe operator'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='NA'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Example'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='How can we get all flights departed on Feb 1st using %&gt;%?'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='NA'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='How can we get all flights that departure on January <strong>OR</strong> February?'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='NA'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='How can we order the flights by arrival delay?'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='NA'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Another exercise:'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='NA'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Now compute for each carier:'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='NA'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='NA'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='NA'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='NA'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='To build a ggplot we need to:'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='NA'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Modifying plots'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='NA'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Boxplot'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='NA'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='NA'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Faceting'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Changing the Theme'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='NA'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='NA'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='NA'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='tidyr - Function'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='NA'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='NA'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Example using tidyr'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='NA'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Let&#39;s tidy it!'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='NA'>
+         62
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=63 title='NA'>
+         63
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=64 title='NA'>
+         64
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=65 title='References'>
+         65
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=66 title='THANK YOU!'>
+         66
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

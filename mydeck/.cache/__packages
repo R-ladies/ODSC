@@ -1,0 +1,11 @@
+base
+ggplot2
+scales
+plyr
+reshape2
+dplyr
+lubridate
+devtools
+DBI
+RMySQL
+tidyr
